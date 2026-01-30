@@ -1,0 +1,279 @@
+{
+  "courses": {
+    "Stock Market Basics": [
+      {
+        "title": "Understand the Securities Market",
+        "description": "Securities market definition, types, participant...",
+        "topics": [
+          {
+            "title": "Securities Markets Introduction",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              },
+              {
+                "question": "Who are considered Sellers of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 1
+              },{
+                "question": "Who look after regulating of securities market?",
+                "options": ["PFRDA", "IRDA", "SEBI", "MCA"],
+                "correct": 2
+              },{
+                "question": "What is the financial product that allow the intermediaries to convert the saving of household to investment?",
+                "options": ["Securities", "Mutual FUND", "Equity", "Debt"],
+                "correct": 0
+              }
+            ]
+          },
+          {
+            "title": "Concept of \"Securities\"",
+            "content": "<h3>Understanding Securities</h3><p>The term “securities” has been defined in Section 2 (h) of the Securities Contracts (Regulation) Act, 1956. The Act defines securities to include: </p><ol><li>shares, scrips, stocks, bonds, debentures, debenture stock or other marketable securities of a like nature in or of any incorporated company or a pooled investment vehicle or other body corporate; </li><li>derivative2</li><li>derivatiunits or any other instrument issued by any collective investment scheme to the investors in such schemes; </li><li>security receipt as defined in clause (zg) of section 2 of the Securitisation and Reconstruction of Financial Assets and Enforcement of Security Interest Act, 2002;</li><li>units or any other such instrument issued to the investors under any mutual fund scheme </li><li>units or any other instrument issued by any pooled investment vehicle</li><li>any certificate or instrument (by whatever name called),</li><li> government securities;</li><li>such other instruments as may be declared by the Central Government to be securities</li><li>rights or interest in securities. </li><ol>",
+            "quiz": [
+              {
+                "question": "Which act define the concept of securities?",
+                "options": ["Securities Contracts (Regulation) Act, 1956", "Securities Market LODR regulation", "SEBI Act 1992", "Sebi Mutual Fund Regulation"],
+                "correct": 0
+              },
+              {
+                "question": "Does the securities include government securities?",
+                "options": ["Yes", "No", "Sometimes", "None of the above"],
+                "correct": 0
+              },
+              {
+                "question": "Does the securities include Derivatives?",
+                "options": ["Yes", "No", "Sometimes", "None of the above"],
+                "correct": 0
+              },
+              {
+                "question": "Does the securities include Mutual Fund units?",
+                "options": ["Yes", "No", "Sometimes", "None of the above"],
+                "correct": 0
+              },{
+                "question": "Does the securities include Zero Coupon Zero principal instrument?",
+                "options": ["Yes", "No", "Sometimes", "None of the above"],
+                "correct": 0
+              },{
+                "question": "Does the securities include Unit link Insurance product?",
+                "options": ["Yes", "No", "Sometimes", "None of the above"],
+                "correct": 1
+              }
+            ]
+          },
+          {
+            "title": "Securities Markets: Structure",
+            "content": "<h3>Understanding Size</h3><p>Market cap is calculated by multiplying price by total shares...</p>",
+            "quiz": [
+              {
+                "question": "How is Market Cap calculated?",
+                "options": ["Revenue x Employees", "Price x Total Shares", "Assets - Liabilities"],
+                "correct": 1
+              }
+            ]
+          },
+          {
+            "title": "Securities Markets: Participants",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "How is Market Cap calculated?",
+                "options": ["Revenue x Employees", "Price x Total Shares", "Assets - Liabilities"],
+                "correct": 1
+              }
+            ]
+          },
+          {
+            "title": "Role of Securities Markets",
+            "content": "<h3>Understanding Size</h3><p>Market cap is calculated by multiplying price by total shares...</p>",
+            "quiz": [
+              {
+                "question": "How is Market Cap calculated?",
+                "options": ["Revenue x Employees", "Price x Total Shares", "Assets - Liabilities"],
+                "correct": 1
+              }
+            ]
+          },{
+            "title": "Technological Advacement in SM",
+            "content": "<h3>Understanding Size</h3><p>Market cap is calculated by multiplying price by total shares...</p>",
+            "quiz": [
+              {
+                "question": "How is Market Cap calculated?",
+                "options": ["Revenue x Employees", "Price x Total Shares", "Assets - Liabilities"],
+                "correct": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Primary Markets",
+        "description": "Primary market, definition functioning and intermediaries in primary market",
+        "topics": [
+          {
+            "title": "Primary Market Functioning",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              },
+              {
+                "question": "Who are considered Sellers of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 1
+              },{
+                "question": "Who look after regulating of securities market?",
+                "options": ["PFRDA", "IRDA", "SEBI", "MCA"],
+                "correct": 2
+              },{
+                "question": "What is the financial product that allow the intermediaries to convert the saving of household to investment?",
+                "options": ["Securities", "Mutual FUND", "Equity", "Debt"],
+                "correct": 0
+              }
+            ]
+          },{
+            "title": "Primary Vs Secondary Market",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              }
+            ]
+          },{
+            "title": "Intermediaires in Primary Market",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              }
+            ]
+          },{
+            "title": "Type of Issues in Primary Market",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              }
+            ]
+          },
+          {
+            "title": "Types of Issuer in primary Market",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              }
+            ]
+          },{
+            "title": "Types of Investors in Primary Market",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              }
+            ]
+          },{
+            "title": "Regulatory Framework for Primary Market",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              }
+            ]
+          },{
+            "title": "Equity share and types of public issue",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              }
+            ]
+          },{
+            "title": "Pricing of Public issue Shares",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              }
+            ]
+          },{
+            "title": "Prospectus",
+            "content": "<h3>Securities Markets</h3><p>Financial market consists of various types of markets (money market, debt market, equity market); investors (buyers of securities), issuers of securities (users of funds), intermediaries and regulatory bodies (SEBI, RBI etc.). The components of the Indian financial market include money market, Securities Market and currency market</p><p>The securities markets provide a regulated institutional framework for an efficient flow of capital (equity and debt) from investors to businesses in the financial market system. It provides a channel Thus, the savings of households, business firms and government can be channelized through the medium of securities market to fund the capital requirements of a business enterprise and government. </p>",
+            "quiz": [
+              {
+                "question": "Who are considered buyer of securities?",
+                "options": ["Investors", "Issuer", "Regulatory Bodies", "Intermediaries"],
+                "correct": 0
+              }
+            ]
+          }
+        ]
+      },{
+        "title": "Secondary Markets",
+        "description": "How to read balance sheets and P&L statements.",
+        "topics": []
+      },
+      {
+        "title": "Secondary Markets",
+        "description": "How to read balance sheets and P&L statements.",
+        "topics": []
+      },
+      {
+        "title": "Mutual Funds",
+        "description": "How to read balance sheets and P&L statements.",
+        "topics": []
+      },
+      {
+        "title": "Derivatives Markets",
+        "description": "How to read balance sheets and P&L statements.",
+        "topics": []
+      }
+    ],
+    "Cryptocurrency 101": [
+      {
+        "title": "Blockchain Basics",
+        "description": "The technology behind the coins.",
+        "topics": [
+          {
+            "title": "What is Decentralization?",
+            "content": "<p>Decentralization means no single entity has control...</p>",
+            "quiz": [
+              {
+                "question": "Who controls a decentralized network?",
+                "options": ["The Central Bank", "The Users/Nodes", "The Government"],
+                "correct": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Personal Finance": [
+      {
+        "title": "Budgeting 101",
+        "description": "Mastering the 50/30/20 rule.",
+        "topics": []
+      }
+    ]
+  }
+}
