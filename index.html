@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Word Trail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bw: 4px;        /* border size */
+      --bc: #282828;       /* border color */
+      --bg: #f1eefb;
+      --ink: #26233a;
+      --board: #3b3a45;
+      --cell: #fff;
+      --block: #b3b3b8;
+      --muted: #6d6a85;
+      --btn: #7c3aed;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1c1a2b;
+        --ink: #f0eefc;
+        --board: #0f0e18;
+        --cell: #efeaff;
+        --block: #4a4958;
+        --muted: #a7a3c4
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #1c1a2b;
+      --ink: #f0eefc;
+      --board: #0f0e18;
+      --cell: #efeaff;
+      --block: #4a4958;
+      --muted: #a7a3c4
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: sans-serif, Fredoka, "Trebuchet MS", system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px 14px 32px
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin: 6px 0 2px;
+      font-weight: 600
+    }
+
+    p.sub {
+      margin: 0 0 14px;
+      color: var(--muted);
+      text-align: center;
+      max-width: 380px;
+      line-height: 1.4
+    }
+
+    #board {
+      position: relative;
+      width: min(92vw, 420px);
+      padding: 0px;
+      Border:1em solid var(--board);
+      background-color: #fff;
+      border-radius: 18px;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none
+    }
+
+    #inner {
+      position: relative;
+      width: 100%
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none
+    }
+
+    #grid {
+      position: absolute;
+      inset: 0;
+      display: grid
+    }
+
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(1.3rem, 6.5vw, 2rem);
+      font-weight: 600;
+      color: #2b2840;
+      position: relative
+    }
+
+    .cell.open::before {
+      content: "";
+      position: absolute;
+      inset: 1%;
+      border-radius: 0%;
+      background: var(--cell);
+      z-index: 0;
+      transition: opacity .15s
+    }
+
+    .cell.open span {
+      position: relative;
+      z-index: 1
+    }
+
+    .cell.block {
+      background: var(--block);
+      border-radius: 1px;
+      margin: 0px;
+
+    
+    }
+
+    .cell.on::before,
+    .cell.done::before {
+      opacity: 0
+    }
+
+    .cell.on,
+    .cell.done {
+      color: #fff;
+
+      
+    }
+
+    .cell.hint {
+      animation: pulse .7s 3;
+
+
+    }
+    #level-indicator {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--btn);
+  margin-top: 4px;
+}
+
+/* Modal and Canvas styles */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--cell);
+  color: var(--ink);
+  padding: 30px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 320px;
+  width: 90%;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: var(--btn);
+}
+
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.10);
+        fill: red;
+        color: #3d9970;
+      }
+    }
+
+    #board.shake {
+      animation: shake .35s
+    }
+
+    @keyframes shake {
+      25% {
+        transform: translateX(-7px)
+      }
+
+      75% {
+        transform: translateX(7px)
+      }
+    }
+
+    #live {
+      height: 2.2rem;
+      margin: 16px 0 4px;
+      font-size: 1.6rem;
+      letter-spacing: .2em;
+      font-weight: 600
+    }
+
+    #msg {
+      min-height: 1.4rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      text-align: center
+    }
+
+    #chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 420px;
+      min-height: 36px
+    }
+
+    .chip {
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 99px;
+      font-weight: 600;
+      letter-spacing: .08em
+    }
+
+    .bar {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px
+    }
+
+    button {
+      font: inherit;
+      font-weight: 600;
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 18px;
+      background: var(--btn);
+      color: #fff;
+      cursor: pointer
+    }
+
+    button.alt {
+      background: transparent;
+      color: var(--ink);
+      box-shadow: inset 0 0 0 2px var(--muted)
+    }
+
+    button:focus-visible {
+      outline: 3px solid #f59e0b;
+      outline-offset: 2px
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      .cell.hint,
+      #board.shake {
+        animation: none;
+
+
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="level-indicator">Level 1 of 100</div>
+  <h1>Word Trail</h1>
+  <div id="theme">Theme</div>
+  <div id="congrats-modal" class="modal">
+  <div class="modal-content">
+    <h2>🎉 Congratulations!</h2>
+    <h3> Fin Lit Champian</h3>
+    <p>You've completed all levels of Word Trail!</p>
+    <button id="restart-game">Play Again</button>
+  </div>
+</div>
+<canvas id="confetti-canvas"></canvas>
+  <p class="sub">Drag across neighbouring letters to spell a word. Every letter must end up in a word.</p>
+  <div id="board">
+    <div id="inner"><svg id="svg"></svg>
+      <div id="grid"></div>
+    </div>
+  </div>
+  <div id="live"></div>
+  <div id="msg"></div>
+  <div id="chips"></div>
+  <div class="bar">
+    <button id="hint" class="alt">Hint</button>
+    <button id="reset" class="alt">Restart</button>
+    <button id="next" disabled>Next puzzle</button>
+  </div>
+   <a href='https://www.acadoo.de/'>Abschlussarbeit schreiben lassen</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=1c82d5f87b40349d281e46fca6a32544c32fefa7'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1662930/t/3"></script>
+  <script>
+const PUZZLES = [
+  {
+    theme: "Regulators & Authorities",
+    rows: ["SERB","#BII","#MCA","IMOF","RDAI"],
+    words: ["SEBI", "RBI", "MCA", "MOF", "IRDAI"]
+  },
+  {
+    theme: "Stock Exchanges",
+    rows: ["NSEN","#MCC","BSXD","#EIE","#XNX"],
+    words: ["NSE", "BSE", "MCX", "INX", "NCDEX"]
+  },
+  {
+    theme: "Primary Market Issues",
+    rows: ["IPO##", "#FPO#", "RIGHT", "#QIPS", "#OFS#"],
+    words: ["IPO", "FPO", "RIGHTS", "QIP", "OFS"]
+  },
+  {
+    theme: "Indian Stock Indices",
+    rows: ["N###","IFES","#TN#","#YS#","##EX"],
+    words: ["NIFTY", "SENSEX"]
+  },
+  {
+    theme: "Depositories in India",
+    rows: ["NSCD","#DDS","#LEL","TAM#","BSDA"],
+    words: ["NSDL", "CDSL", "DEMAT", "BSDA"]
+  },
+  
+
+];
+    const COLORS = ["#a855e8", "#4fb90d", "#f43f6e", "#06b6d4", "#f59e0b", "#3b82f6"];
+    let pi = 0,
+      P, R, C, cells = [],
+      used, found, path = [],
+      drag = false;
+    const $ = id => document.getElementById(id);
+
+    function load(i) {
+      pi = i % PUZZLES.length;
+      P = PUZZLES[pi];
+      $("next").disabled = true;
+      $("level-indicator").textContent = `Level ${pi + 1}`;
+    document.querySelector("h1").textContent = "Word Trail: " + P.theme;
+      R = P.rows.length;
+      C = P.rows[0].length;
+      used = new Set();
+      found = [];
+      path = [];
+      const inner = $("inner"),
+        g = $("grid");
+      inner.style.aspectRatio = C + "/" + R;
+      g.style.gridTemplateColumns = `repeat(${C},1fr)`;
+      g.style.gridTemplateRows = `repeat(${R},1fr)`;
+      g.innerHTML = "";
+      cells = [];
+      P.rows.forEach((row, r) => [...row].forEach((ch, c) => {
+        const d = document.createElement("div");
+        d.dataset.i = r * C + c;
+        if (ch === "#") {
+          d.className = "cell block"
+        } else {
+          d.className = "cell open";
+          d.innerHTML = "<span>" + ch + "</span>"
+        }
+        g.appendChild(d);
+        cells.push(d);
+      }));
+      $("svg").setAttribute("viewBox", `0 0 ${C*100} ${R*100}`);
+      $("msg").textContent = P.words.length + " words hidden. Word lengths: " + P.words.map(w => w.length).sort((a, b) => a - b).join(", ");
+      render();
+    }
+    const letter = i => P.rows[Math.floor(i / C)][i % C];
+    const ctr = i => [(i % C) * 100 + 50, Math.floor(i / C) * 100 + 50];
+    const adj = (a, b) => Math.abs((a % C) - (b % C)) + Math.abs(Math.floor(a / C) - Math.floor(b / C)) === 1;
+    const open = i => letter(i) !== "#";
+
+    function line(p, col, op, w = 80) {
+    const pts = p.map(ctr);
+    let d = "M" + pts[0].join(" ");
+    if (pts.length === 1) d += " L" + (pts[0][0] + .01) + " " + pts[0][1];
+    pts.slice(1).forEach(q => d += " L" + q.join(" "));
+    return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" opacity="${op}"/>`;
+  }
+
+    /*function line(p, col, op) {
+      const pts = p.map(ctr);
+      let d = "M" + pts[0].join(" ");
+      if (pts.length === 1) d += " L" + (pts[0][0] + .01) + " " + pts[0][1];
+      pts.slice(1).forEach(q => d += " L" + q.join(" "));
+      return `<path d="${d}" fill="none" stroke="${col}" stroke-width="80" stroke-linecap="round" stroke-linejoin="round" opacity="${op}" background-color="red"/>`;
+    }
+
+    /*function render() {
+      let s = found.map(f => line(f.path, f.color, 1)).join("");
+      if (path.length) s += line(path, "#7c3aed", .85);
+      $("svg").innerHTML = s;
+      cells.forEach((c, i) => {
+        c.classList.toggle("on", path.includes(i));
+        c.classList.toggle("done", used.has(i))
+      });
+      $("live").textContent = path.map(letter).join("");
+      $("chips").innerHTML = found.map(f => `<span class="chip" style="background:${f.color}">${f.word}</span>`).join("");
+    }
+    function render() {
+      
+      let s = found.map(f => line(f.path, f.color, 1)).join("");   // solid stroke
+      if (path.length) s += line(path, "#7c3aed", .85);
+      $("svg").innerHTML = s;
+    
+      cells.forEach((c, i) => {
+        c.classList.toggle("on", path.includes(i));
+        c.classList.toggle("done", used.has(i));
+        c.style.backgroundColor = "";                               // clear old tint
+      });
+    
+      // cell background = stroke color at 30% opacity ("4D" = 30% in hex)
+      found.forEach(f => f.path.forEach(i => cells[i].style.backgroundColor = f.color + "4D"));
+    
+      $("live").textContent = path.map(letter).join("");
+      $("chips").innerHTML = found.map(f => `<span class="chip" style="background:${f.color}">${f.word}</span>`).join("");
+    }
+    */
+      function render() {
+  let s = found.map(f => line(f.path, f.color, 1)).join("");   // solid stroke
+  if (path.length) s += line(path, "#7c3aed", .85);
+  $("svg").innerHTML = s;
+
+  cells.forEach((c, i) => {
+    c.classList.toggle("on", path.includes(i));
+    c.classList.toggle("done", used.has(i));
+    c.style.backgroundColor = "";                               // clear old tint
+    c.style.boxShadow = "";                                     // clear old outline
+  });
+
+  // cell background = stroke color at 30% opacity ("4D" = 30% in hex)
+  found.forEach(f => f.path.forEach(i => cells[i].style.backgroundColor = f.color + "4D"));
+
+  // NEW: 1px black border around the word's cells (outer edge only)
+found.forEach(f => {
+  const inWord = new Set(f.path);
+  f.path.forEach(i => {
+    const r = Math.floor(i / C), c = i % C, sh = [];
+
+    // width for one side: none (same word), half (other word), full (free edge)
+    const w = (exists, j) =>
+      exists && inWord.has(j) ? null :
+      exists && used.has(j)   ? "calc(var(--bw) / 2)" : "var(--bw)";
+
+    const t = w(r > 0,     i - C), b = w(r < R - 1, i + C);
+    const l = w(c > 0,     i - 1), rt = w(c < C - 1, i + 1);
+
+    if (t)  sh.push(`inset 0 ${t} 0 0 var(--bc)`);                  // top
+    if (b)  sh.push(`inset 0 calc(${b} * -1) 0 0 var(--bc)`);       // bottom
+    if (l)  sh.push(`inset ${l} 0 0 0 var(--bc)`);                  // left
+    if (rt) sh.push(`inset calc(${rt} * -1) 0 0 0 var(--bc)`);      // right
+
+    cells[i].style.boxShadow = sh.join(",");
+  });
+});
+
+  $("live").textContent = path.map(letter).join("");
+  $("chips").innerHTML = found.map(f => `<span class="chip" style="background:${f.color}">${f.word}</span>`).join("");
+}
+
+    function cellAt(x, y) {
+      const e = document.elementFromPoint(x, y);
+      const c = e && e.closest && e.closest(".cell");
+      return c ? +c.dataset.i : -1
+    }
+    const board = $("board");
+    board.addEventListener("pointerdown", e => {
+      const i = cellAt(e.clientX, e.clientY);
+      if (i < 0 || !open(i) || used.has(i)) return;
+      drag = true;
+      path = [i];
+      board.setPointerCapture(e.pointerId);
+      render();
+    });
+    board.addEventListener("pointermove", e => {
+      if (!drag) return;
+      const i = cellAt(e.clientX, e.clientY);
+      if (i < 0 || i === path[path.length - 1] || !open(i) || used.has(i)) return;
+      if (path.length > 1 && i === path[path.length - 2]) {
+        path.pop()
+      } else if (!path.includes(i) && adj(path[path.length - 1], i)) {
+        path.push(i)
+      }
+      render();
+    });
+
+    function finish() {
+      if (!drag) return;
+      drag = false;
+      const w = path.map(letter).join("");
+      const ok = path.length > 1 && P.words.includes(w) && !found.some(f => f.word === w);
+      
+      if (ok) {
+        found.push({
+          word: w,
+          path: [...path],
+          color: COLORS[found.length % COLORS.length]
+        });
+        path.forEach(i => used.add(i));
+        const left = P.words.length - found.length;
+        $("msg").textContent = left ? `"${w}" found. ${left} to go.` : "";
+      } else if (path.length > 1) {
+        board.classList.remove("shake");
+        void board.offsetWidth;
+        board.classList.add("shake");
+        $("msg").textContent = `"${w}" isn't one of the words. Try another trail.`;
+      }
+      path = [];
+      render();
+      if (found.length === P.words.length) {
+        $("msg").textContent = "Solved! Every letter is part of a word.";
+        $("next").disabled = false; // <-- ENABLE NEXT BUTTON HERE
+      if (pi === PUZZLES.length - 1) {
+      launchConfetti();
+      setTimeout(() => {
+        $("congrats-modal").classList.add("show");
+      }, 600);
+    }
+      }
+      if (found.length === P.words.length) $("msg").textContent = "Solved! Every letter is part of a word.";
+    }
+    board.addEventListener("pointerup", finish);
+    board.addEventListener("pointercancel", finish);
+
+    function findPath(word) {
+      const tryFrom = (i, k, seen) => {
+        if (letter(i) !== word[k]) return null;
+        if (k === word.length - 1) return [i];
+        seen.add(i);
+        for (const j of [i - C, i + C, i - 1, i + 1]) {
+          if (j < 0 || j >= R * C || !adj(i, j) || !open(j) || used.has(j) || seen.has(j)) continue;
+          const r = tryFrom(j, k + 1, seen);
+          if (r) {
+            seen.delete(i);
+            return [i, ...r]
+          }
+        }
+        seen.delete(i);
+        return null;
+      };
+      for (let i = 0; i < R * C; i++) {
+        if (open(i) && !used.has(i)) {
+          const r = tryFrom(i, 0, new Set());
+          if (r) return r
+        }
+      }
+      return null;
+    }
+    $("hint").onclick = () => {
+      const rest = P.words.filter(w => !found.some(f => f.word === w));
+      for (const w of rest) {
+        const p = findPath(w);
+        if (p) {
+          p.slice(0, p.length).forEach(i => {
+            cells[i].classList.remove("hint");
+
+            void cells[i].offsetWidth;
+            cells[i].classList.add("hint");
+
+            
+          });
+          $("msg").textContent = `Hint: a ${w.length}-letter word starts with "${w[0]}".`;
+          return
+        }
+      }
+      $("msg").textContent = "No word fits the remaining letters. Press Restart.";
+    };
+    function launchConfetti() {
+  const canvas = $("confetti-canvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = Array.from({ length: 120 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height - canvas.height,
+    size: Math.random() * 8 + 4,
+    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    speed: Math.random() * 4 + 2,
+    rotation: Math.random() * 360,
+    rotSpeed: Math.random() * 10 - 5
+  }));
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let active = false;
+    pieces.forEach(p => {
+      p.y += p.speed;
+      p.rotation += p.rotSpeed;
+      if (p.y < canvas.height) active = true;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rotation * Math.PI) / 180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      ctx.restore();
+    });
+
+    if (active) requestAnimationFrame(animate);
+  }
+  animate();
+}
+
+// Reset button on modal
+$("restart-game").onclick = () => {
+  $("congrats-modal").classList.remove("show");
+  load(0);
+};
+    $("reset").onclick = () => load(pi);
+    $("next").onclick = () => load(pi + 1);
+    load(0);
+  </script>
+</body>
+
+</html>
